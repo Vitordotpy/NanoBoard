@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:nano_board/constants/instances.dart';
+import 'package:nano_board/styles/colors.dart';
+import 'package:nano_board/widgets/sidebar.dart';
+import 'package:nano_board/widgets/topbar.dart';
+
+import 'constants/pageslist.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -9,8 +13,19 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
+        color: greyBackground,
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            SideBar(),
+            Column(
+              children: [
+                TopBar(),
+                pagesList[pageController.currentPage.value]!
+              ],
+            )
+          ],
+        ),
       ),
     );
   }
