@@ -17,19 +17,35 @@ class SideBar extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Text(
-                'NanoBoard',
-                style: TextStyle(
-                    color: blueNanoBoard,
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  'NanoBoard',
+                  style: TextStyle(
+                      color: blueNanoBoard,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+              Divider(
+                height: 2,
+                color: white,
               ),
               Expanded(
                 child: ListView(
                   children: pagesNames
+                      .where((e) =>
+                          e != "Upgrade" || e != "Settings" || e != "Help")
+                      .toList()
                       .map((e) => SidebarItem(text: e, icon: pagesIcons[e]))
                       .toList(),
                 ),
+              ),
+              const SidebarItem(text: 'Upgrade', icon: Icons.workspace_premium),
+              const SidebarItem(text: 'Settings', icon: Icons.settings),
+              const SidebarItem(text: 'Help', icon: Icons.help),
+              const SizedBox(
+                height: 8,
               )
             ]),
       ),

@@ -10,7 +10,7 @@ import 'app.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
-    setWindowTitle('Nano Board');
+    setWindowTitle('NanoBoard');
     setWindowMinSize(const Size(800, 600));
     setWindowMaxSize(Size.infinite);
   }
