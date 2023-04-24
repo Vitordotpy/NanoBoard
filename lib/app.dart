@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:nano_board/constants/instances.dart';
 import 'package:nano_board/styles/colors.dart';
 import 'package:nano_board/widgets/sidebar.dart';
@@ -21,7 +22,7 @@ class App extends StatelessWidget {
             Column(
               children: [
                 TopBar(),
-                pagesList[pageController.currentPage.value]!
+                Obx(() => pagesList[pageController.currentPage.value]!)
               ],
             )
           ],

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nano_board/controllers/pagecontroller.dart';
+import 'package:nano_board/controllers/userDAO.dart';
 import 'package:window_size/window_size.dart';
 
 import 'app.dart';
@@ -16,6 +17,7 @@ void main() {
   }
   runApp(const MyApp());
   Get.put(CustomPageController());
+  Get.put(UserDAO());
 }
 
 class MyApp extends StatelessWidget {

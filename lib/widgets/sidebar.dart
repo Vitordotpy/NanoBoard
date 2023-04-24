@@ -34,16 +34,15 @@ class SideBar extends StatelessWidget {
               Expanded(
                 child: ListView(
                   children: pagesNames
-                      .where((e) =>
-                          e != "Upgrade" || e != "Settings" || e != "Help")
-                      .toList()
                       .map((e) => SidebarItem(text: e, icon: pagesIcons[e]))
                       .toList(),
                 ),
               ),
-              const SidebarItem(text: 'Upgrade', icon: Icons.workspace_premium),
-              const SidebarItem(text: 'Settings', icon: Icons.settings),
-              const SidebarItem(text: 'Help', icon: Icons.help),
+              Column(
+                children: opstionsNames
+                    .map((e) => SidebarItem(text: e, icon: opstionsIcons[e]))
+                    .toList(),
+              ),
               const SizedBox(
                 height: 8,
               )

@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:nano_board/views/analytics.dart';
 import 'package:nano_board/views/crypto.dart';
 import 'package:nano_board/views/finances.dart';
+import 'package:nano_board/views/help.dart';
 import 'package:nano_board/views/home.dart';
 import 'package:nano_board/views/invest.dart';
 import 'package:nano_board/views/profile.dart';
 import 'package:nano_board/views/schedule.dart';
+import 'package:nano_board/views/settings.dart';
 import 'package:nano_board/views/upgrade.dart';
 
 const Map<String, Widget> pagesList = {
@@ -17,8 +19,8 @@ const Map<String, Widget> pagesList = {
   "Schedule": Schedule(),
   "Profile": Profile(),
   "Upgrade": Upgrade(),
-  "Settings": Upgrade(),
-  "Help": Upgrade()
+  "Help": Help(),
+  "Settings": Settings()
 };
 const Map<String, IconData> pagesIcons = {
   "Home": Icons.home,
@@ -37,7 +39,18 @@ const List<String> pagesNames = [
   "Crypto",
   "Schedule",
   "Profile",
-  "Upgrade",
-  "Settings",
-  "Help"
 ];
+
+const Map<String, Widget> optionsList = {
+  "Upgrade": Upgrade(),
+  "Help": Help(),
+  "Settings": Settings()
+};
+
+const List<String> opstionsNames = ["Upgrade", "Help", "Settings"];
+
+const Map<String, IconData> opstionsIcons = {
+  "Upgrade": Icons.workspace_premium,
+  "Help": Icons.help,
+  "Settings": Icons.settings
+};
