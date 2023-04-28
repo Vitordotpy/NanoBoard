@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:nano_board/constants/currencyslist.dart';
+import 'package:nano_board/constants/instances.dart';
 
 import '../styles/colors.dart';
 
@@ -9,6 +12,30 @@ class TopBarProfile extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       child: Row(children: [
+        Obx(() => DropdownButtonHideUnderline(
+              child: DropdownButton(
+                  padding: const EdgeInsets.all(5),
+                  elevation: 0,
+                  onChanged: (value) => currentUser.setCurrency(value),
+                  value: currentUser.getCurrency(),
+                  items: [1, 2]
+                      .map((e) => DropdownMenuItem(
+                            value: e,
+                            child: Row(children: [
+                              Padding(
+                                padding: const EdgeInsets.all(5.0),
+                                child: Image(
+                                  width: 20,
+                                  height: 20,
+                                  image: AssetImage(getCurrencyFlag[e]!),
+                                  color: null,
+                                ),
+                              ),
+                              Text(getCurrencyLocation[e]!),
+                            ]),
+                          ))
+                      .toList()),
+            )),
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Text(
@@ -19,8 +46,8 @@ class TopBarProfile extends StatelessWidget {
                 color: darkBackground),
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
+        const Padding(
+          padding: EdgeInsets.all(8.0),
           child: CircleAvatar(
             child: Icon(Icons.person),
           ),

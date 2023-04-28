@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nano_board/styles/colors.dart';
+import 'package:nano_board/widgets/custom_text.dart';
 
 class CustomTextField extends StatelessWidget {
   final String outsideText;
@@ -8,14 +9,15 @@ class CustomTextField extends StatelessWidget {
   final TextEditingController textEditingController;
   final FocusNode focusNode;
   final TextInputType textInputType;
-  const CustomTextField(
-      {super.key,
-      required this.outsideText,
-      required this.labelText,
-      this.labelIcon,
-      required this.textEditingController,
-      required this.focusNode,
-      required this.textInputType});
+  const CustomTextField({
+    super.key,
+    required this.outsideText,
+    required this.labelText,
+    this.labelIcon,
+    required this.textEditingController,
+    required this.focusNode,
+    required this.textInputType,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +29,11 @@ class CustomTextField extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(outsideText),
+              padding: const EdgeInsets.only(right: 5.0),
+              child: CustomText(
+                text: outsideText,
+                color: darkBackground,
+              ),
             ),
             Expanded(
               child: TextField(
@@ -37,6 +42,7 @@ class CustomTextField extends StatelessWidget {
                 focusNode: focusNode,
                 keyboardType: textInputType,
                 decoration: InputDecoration(
+                    contentPadding: const EdgeInsets.only(left: 5),
                     labelText: labelText,
                     floatingLabelStyle: TextStyle(color: blueNanoBoard),
                     labelStyle: TextStyle(color: darkBackground),
