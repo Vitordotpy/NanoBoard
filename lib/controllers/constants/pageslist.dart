@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:nano_board/views/analytics.dart';
-import 'package:nano_board/views/crypto.dart';
-import 'package:nano_board/views/finances.dart';
-import 'package:nano_board/views/help.dart';
-import 'package:nano_board/views/home.dart';
-import 'package:nano_board/views/invest.dart';
-import 'package:nano_board/views/profile.dart';
-import 'package:nano_board/views/schedule.dart';
-import 'package:nano_board/views/settings.dart';
-import 'package:nano_board/views/upgrade.dart';
+import '../../views/pages/analytics.dart';
+import '../../views/pages/crypto.dart';
+import '../../views/pages/finances.dart';
+import '../../views/pages/help.dart';
+import '../../views/pages/home.dart';
+import '../../views/pages/invest.dart';
+import '../../views/pages/profile.dart';
+import '../../views/pages/schedule.dart';
+import '../../views/pages/settings.dart';
+import '../../views/pages/upgrade.dart';
 
 const Map<String, Widget> pagesList = {
   "Home": Home(),

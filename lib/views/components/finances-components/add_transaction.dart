@@ -2,12 +2,13 @@ import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 import 'package:get/get.dart';
-import 'package:nano_board/constants/currencyslist.dart';
-import 'package:nano_board/constants/instances.dart';
-import 'package:nano_board/models/transaction.dart';
-import 'package:nano_board/styles/colors.dart';
-import 'package:nano_board/widgets/custom_textfield.dart';
+import 'package:nano_board/controllers/constants/currencyslist.dart';
+import 'package:nano_board/controllers/constants/instances.dart';
+import 'package:nano_board/models/transaction_model.dart';
+import 'package:nano_board/views/styles/colors.dart';
 import 'package:uuid/uuid.dart';
+
+import '../widgets/custom_textfield.dart';
 
 class AddTransaction extends StatelessWidget {
   const AddTransaction({super.key});
@@ -18,7 +19,7 @@ class AddTransaction extends StatelessWidget {
     var valueController = MoneyMaskedTextController(
         thousandSeparator: ',',
         decimalSeparator: '.',
-        leftSymbol: getCurrencySymbol[currentUser.getCurrency()]!);
+        leftSymbol: getCurrencySymbol[userDAO.user.value.getCurrency()]!);
 
     FocusNode typeFocus = FocusNode();
     FocusNode valueFocus = FocusNode();
@@ -83,11 +84,13 @@ class AddTransaction extends StatelessWidget {
                 onPressed: () {
                   if (typeController.text.isNotEmpty &&
                       valueController.text.isNotEmpty) {
-                    currentUser.addTransaction(Transaction(
-                        const Uuid().v1().toString(),
-                        typeController.text,
-                        valueController.numberValue,
-                        dateTime.value));
+                    userDAO.user.value.addTransaction(TransactionModel(
+                        id: const Uuid().v1().toString(),
+                        description: typeController.text,
+                        value: valueController.numberValue,
+                        dateTime: dateTime.value));
+
+                    userDAO.user.value.setBalance(valueController.numberValue);
                   }
                 },
                 style: ElevatedButton.styleFrom(
@@ -104,11 +107,12 @@ class AddTransaction extends StatelessWidget {
                 onPressed: () {
                   if (typeController.text.isNotEmpty &&
                       valueController.text.isNotEmpty) {
-                    currentUser.addTransaction(Transaction(
-                        const Uuid().v1().toString(),
-                        typeController.text,
-                        -valueController.numberValue,
-                        dateTime.value));
+                    userDAO.user.value.addTransaction(TransactionModel(
+                        id: const Uuid().v1().toString(),
+                        description: typeController.text,
+                        value: -valueController.numberValue,
+                        dateTime: dateTime.value));
+                    userDAO.user.value.setBalance(-valueController.numberValue);
                   }
                 },
                 style: ElevatedButton.styleFrom(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:nano_board/styles/colors.dart';
-import 'package:nano_board/widgets/custom_text.dart';
+import 'package:nano_board/views/styles/colors.dart';
+
+import 'custom_text.dart';
 
 class CustomTextField extends StatelessWidget {
   final String outsideText;

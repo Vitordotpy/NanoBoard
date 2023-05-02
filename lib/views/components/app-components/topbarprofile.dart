@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:nano_board/constants/currencyslist.dart';
-import 'package:nano_board/constants/instances.dart';
+import 'package:nano_board/controllers/constants/currencyslist.dart';
+import 'package:nano_board/controllers/constants/instances.dart';
 
-import '../styles/colors.dart';
+import '../../styles/colors.dart';
 
 class TopBarProfile extends StatelessWidget {
   const TopBarProfile({super.key});
@@ -16,8 +16,8 @@ class TopBarProfile extends StatelessWidget {
               child: DropdownButton(
                   padding: const EdgeInsets.all(5),
                   elevation: 0,
-                  onChanged: (value) => currentUser.setCurrency(value),
-                  value: currentUser.getCurrency(),
+                  onChanged: (value) => userDAO.user.value.setCurrency(value),
+                  value: userDAO.user.value.getCurrency(),
                   items: [1, 2]
                       .map((e) => DropdownMenuItem(
                             value: e,

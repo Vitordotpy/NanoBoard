@@ -17,7 +17,9 @@ dependencies:
   uuid:
   date_format:
   currency_formatter:
-  flutter_masked_text2: 
+  flutter_masked_text2:
+  http:
+
 
 
 

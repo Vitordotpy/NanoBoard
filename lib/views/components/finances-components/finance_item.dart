@@ -2,15 +2,15 @@ import 'package:currency_formatter/currency_formatter.dart';
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:nano_board/models/transaction.dart';
-import 'package:nano_board/styles/colors.dart';
-import 'package:nano_board/widgets/custom_text.dart';
+import 'package:nano_board/models/transaction_model.dart';
+import 'package:nano_board/views/styles/colors.dart';
 
-import '../constants/currencyslist.dart';
-import '../constants/instances.dart';
+import '../../../controllers/constants/currencyslist.dart';
+import '../../../controllers/constants/instances.dart';
+import '../widgets/custom_text.dart';
 
 class FinanceItem extends StatelessWidget {
-  final Transaction transaction;
+  final TransactionModel transaction;
   const FinanceItem({super.key, required this.transaction});
 
   @override
@@ -42,7 +42,7 @@ class FinanceItem extends StatelessWidget {
                 child: Obx(
               () => CustomText(
                 text: CurrencyFormatter.format(transaction.getValue(),
-                    getCurrencySettings[currentUser.getCurrency()]!),
+                    getCurrencySettings[userDAO.user.value.getCurrency()]!),
                 color: transaction.getValue() < 0 ? Colors.red : Colors.green,
               ),
             )),

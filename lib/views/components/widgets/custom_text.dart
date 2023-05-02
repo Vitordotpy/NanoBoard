@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nano_board/styles/colors.dart';
+import 'package:nano_board/views/styles/colors.dart';
 
 class CustomText extends StatelessWidget {
   final String text;
