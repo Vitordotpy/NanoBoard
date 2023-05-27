@@ -19,6 +19,8 @@ dependencies:
   currency_formatter:
   flutter_masked_text2:
   http:
+  shelf:
+  shelf_router:
 
 
 

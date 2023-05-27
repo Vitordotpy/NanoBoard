@@ -2,11 +2,15 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:nano_board/apis/finance_api.dart';
+import 'package:nano_board/apis/login_api.dart';
 import 'package:nano_board/controllers/pagecontroller.dart';
 import 'package:nano_board/controllers/userDAO.dart';
+import 'package:shelf/shelf.dart';
 import 'package:window_size/window_size.dart';
 
 import 'app.dart';
+import 'infrasctructure/server_comunication.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,7 +21,14 @@ Future<void> main() async {
   }
   runApp(const MyApp());
   Get.put(CustomPageController());
-  Get.put(UserDAO());
+  Get.put(UserDAO(
+      name: RxString('Lorem Ipsum'),
+      password: RxString('12345'),
+      email: RxString('email@email.com'),
+      uid: RxString('uid'))); // provisório
+  Handler cascade =
+      Cascade().add(LoginApi().handler).add(FinanceApi().handler).handler;
+  ServerComunication().initialize(cascade);
 }
 
 class MyApp extends StatelessWidget {

@@ -32,7 +32,7 @@ class UserModel {
   setName(name) => this.name = name;
   setUid(uid) => this.uid = uid;
   setEmail(email) => this.email = email;
-  setUserFinances(userFinances) => this.userFinances = userFinances;
+  setUserFinances(userFinances) => this.userFinances.add(userFinances);
   setBalance(balance) => this.balance += balance;
 
   //testando transaction*

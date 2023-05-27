@@ -1,7 +1,7 @@
 import 'package:currency_formatter/currency_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:nano_board/controllers/constants/instances.dart';
+import 'package:nano_board/controllers/instances.dart';
 import 'package:nano_board/views/styles/colors.dart';
 import 'package:nano_board/views/components/finances-components/add_transaction.dart';
 import 'package:nano_board/views/components/finances-components/finance_item.dart';
@@ -27,15 +27,15 @@ class Finances extends StatelessWidget {
               child: Obx(
                 () => CustomText(
                     text:
-                        'Balance: ${CurrencyFormatter.format(userDAO.user.value.getBalance(), getCurrencySettings[userDAO.user.value.getCurrency()]!)}'),
+                        'Balance: ${CurrencyFormatter.format(userDAO.getBalance(), getCurrencySettings[userDAO.getCurrency()]!)}'),
               ),
             ),
           ),
           const AddTransaction(),
           Obx(
             () => Wrap(
-              children: userDAO.user.value.getUserFinances().isNotEmpty
-                  ? userDAO.user.value
+              children: userDAO.getUserFinances().isNotEmpty
+                  ? userDAO
                       .getUserFinances()
                       .map((element) => FinanceItem(
                             transaction: element,

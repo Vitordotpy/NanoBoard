@@ -6,7 +6,7 @@ import 'package:nano_board/models/transaction_model.dart';
 import 'package:nano_board/views/styles/colors.dart';
 
 import '../../../controllers/constants/currencyslist.dart';
-import '../../../controllers/constants/instances.dart';
+import '../../../controllers/instances.dart';
 import '../widgets/custom_text.dart';
 
 class FinanceItem extends StatelessWidget {
@@ -42,7 +42,7 @@ class FinanceItem extends StatelessWidget {
                 child: Obx(
               () => CustomText(
                 text: CurrencyFormatter.format(transaction.getValue(),
-                    getCurrencySettings[userDAO.user.value.getCurrency()]!),
+                    getCurrencySettings[userDAO.getCurrency()]!),
                 color: transaction.getValue() < 0 ? Colors.red : Colors.green,
               ),
             )),

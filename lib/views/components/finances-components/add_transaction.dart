@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 import 'package:get/get.dart';
 import 'package:nano_board/controllers/constants/currencyslist.dart';
-import 'package:nano_board/controllers/constants/instances.dart';
+import 'package:nano_board/controllers/instances.dart';
 import 'package:nano_board/models/transaction_model.dart';
 import 'package:nano_board/views/styles/colors.dart';
 import 'package:uuid/uuid.dart';
@@ -19,7 +19,7 @@ class AddTransaction extends StatelessWidget {
     var valueController = MoneyMaskedTextController(
         thousandSeparator: ',',
         decimalSeparator: '.',
-        leftSymbol: getCurrencySymbol[userDAO.user.value.getCurrency()]!);
+        leftSymbol: getCurrencySymbol[userDAO.getCurrency()]!);
 
     FocusNode typeFocus = FocusNode();
     FocusNode valueFocus = FocusNode();
@@ -84,13 +84,13 @@ class AddTransaction extends StatelessWidget {
                 onPressed: () {
                   if (typeController.text.isNotEmpty &&
                       valueController.text.isNotEmpty) {
-                    userDAO.user.value.addTransaction(TransactionModel(
+                    userDAO.addTransaction(TransactionModel(
                         id: const Uuid().v1().toString(),
                         description: typeController.text,
                         value: valueController.numberValue,
                         dateTime: dateTime.value));
 
-                    userDAO.user.value.setBalance(valueController.numberValue);
+                    userDAO.setBalance(valueController.numberValue);
                   }
                 },
                 style: ElevatedButton.styleFrom(
@@ -107,12 +107,12 @@ class AddTransaction extends StatelessWidget {
                 onPressed: () {
                   if (typeController.text.isNotEmpty &&
                       valueController.text.isNotEmpty) {
-                    userDAO.user.value.addTransaction(TransactionModel(
+                    userDAO.addTransaction(TransactionModel(
                         id: const Uuid().v1().toString(),
                         description: typeController.text,
                         value: -valueController.numberValue,
                         dateTime: dateTime.value));
-                    userDAO.user.value.setBalance(-valueController.numberValue);
+                    userDAO.setBalance(-valueController.numberValue);
                   }
                 },
                 style: ElevatedButton.styleFrom(
