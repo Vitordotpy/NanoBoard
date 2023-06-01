@@ -2,10 +2,10 @@ import 'dart:convert';
 
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 class TransactionModel {
-  late final String id;
-  late final String description;
-  late final double value;
-  late final DateTime dateTime;
+  final String id;
+  final String description;
+  final double value;
+  final DateTime dateTime;
 
   TransactionModel({
     required this.id,
@@ -13,11 +13,6 @@ class TransactionModel {
     required this.value,
     required this.dateTime,
   });
-
-  setId(id) => this.id = id;
-  setType(description) => this.description = description;
-  setValue(value) => this.value = value;
-  setDateTime(dateTime) => this.dateTime = dateTime;
 
   getId() => id;
   getType() => description;

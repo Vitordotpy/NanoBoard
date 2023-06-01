@@ -6,6 +6,7 @@ import 'package:nano_board/apis/finance_api.dart';
 import 'package:nano_board/apis/login_api.dart';
 import 'package:nano_board/controllers/pagecontroller.dart';
 import 'package:nano_board/controllers/userDAO.dart';
+import 'package:nano_board/utils/custom_env.dart';
 import 'package:shelf/shelf.dart';
 import 'package:window_size/window_size.dart';
 
@@ -28,7 +29,11 @@ Future<void> main() async {
       uid: RxString('uid'))); // provisório
   Handler cascade =
       Cascade().add(LoginApi().handler).add(FinanceApi().handler).handler;
-  ServerComunication().initialize(cascade);
+  CustomEnv.fromFile('.env-dev'); // Muda o ambiente de desenvolvimento
+  ServerComunication().initialize(
+      handler: cascade,
+      adress: await CustomEnv.get(key: 'server_adress') as String,
+      port: await CustomEnv.get(key: 'server_port') as int);
 }
 
 class MyApp extends StatelessWidget {

@@ -21,6 +21,7 @@ dependencies:
   http:
   shelf:
   shelf_router:
+  dart_jsonwebtoken:
 
 
 

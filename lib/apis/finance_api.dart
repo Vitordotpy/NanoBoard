@@ -7,10 +7,39 @@ class FinanceApi {
   Handler get handler {
     final router = Router();
 
+    // create finance
     router.post('/user/finance', (Request request) async {
       var result = await request.readAsString(); // lendo o json da requisição
       userDAO.setUserFinances(TransactionModel.fromJson(
           result)); // transformando o json resultante em um objeto do tipo TransactionModel()
+      return Response.ok(userDAO.getUserFinances());
+    });
+
+    // get finances
+    router.get('/user/finance', (Request request) async {
+      var result = await request.readAsString(); // lendo o json da requisição
+      userDAO.setUserFinances(TransactionModel.fromJson(
+          result)); // transformando o json resultante em um objeto do tipo TransactionModel()
+      return Response.ok(userDAO.getUserFinances());
+    });
+
+    // update finance
+    router.put('/user/finance', (Request request) async {
+      var result = await request.readAsString(); // lendo o json da requisição
+      String? id = request.url.queryParameters['id'];
+      userDAO.setUserFinances(TransactionModel.fromJson(
+          result)); // transformando o json resultante em um objeto do tipo TransactionModel()
+
+      return Response.ok(userDAO.getUserFinances());
+    });
+
+    // delete a finance
+    router.delete('/user/finance', (Request request) async {
+      var result = await request.readAsString(); // lendo o json da requisição
+      String? id = request.url.queryParameters['id'];
+      userDAO.setUserFinances(TransactionModel.fromJson(
+          result)); // transformando o json resultante em um objeto do tipo TransactionModel()
+
       return Response.ok(userDAO.getUserFinances());
     });
 
