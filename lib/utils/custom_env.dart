@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'parse_extension.dart';
 
 class CustomEnv {
   // ambiente customizado, recupera informações sensíveis de ambiente através da chave(key)
@@ -11,9 +12,9 @@ class CustomEnv {
     return CustomEnv._();
   }
 
-  static Future get({required String key}) async {
+  static Future<T> get<T>({required String key}) async {
     if (_map.isEmpty) await _load();
-    return _map[key];
+    return _map[key]!.toType(T);
   }
 
   static Future<void> _load() async {
@@ -22,6 +23,6 @@ class CustomEnv {
   }
 
   static Future<String> _readFile() async {
-    return await File('.env').readAsString();
+    return await File(_env).readAsString();
   }
 }

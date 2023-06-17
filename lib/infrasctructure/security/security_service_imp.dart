@@ -1,10 +1,14 @@
 import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
+import 'package:get/get.dart';
+import 'package:nano_board/infrasctructure/security/api_router_validate.dart';
 import 'package:nano_board/infrasctructure/security/security_service.dart';
 import 'package:nano_board/utils/custom_env.dart';
-import 'package:shelf/shelf.dart';
-import 'package:shelf/src/middleware.dart';
+import 'package:shelf/shelf.dart' as shelf;
 
-class SecurityServiceImp implements SecurityService<JWT> {
+class SecurityServiceImp extends GetxController
+    implements SecurityService<JWT> {
+  static final SecurityServiceImp instance = Get.find();
+
   @override
   Future<String> generateJWT(String uid) async {
     var jwt = JWT({
@@ -32,14 +36,32 @@ class SecurityServiceImp implements SecurityService<JWT> {
   }
 
   @override
-  Middleware get auth {
-    return (Handler handler) {
-      return (Request req) {
-        return handler(req);
+  shelf.Middleware get authorization {
+    return (shelf.Handler handler) {
+      return (shelf.Request req) async {
+        String? authorizationHeader = req.headers['Authorization'];
+
+        JWT? jwt;
+
+        if (authorizationHeader != null) {
+          if (authorizationHeader.startsWith('Bearer ')) {
+            String token = authorizationHeader.substring(7);
+            jwt = await validateJWT(token);
+          }
+        }
+        var request = req.change(context: {'jwt': jwt});
+        return handler(request);
       };
     };
   }
 
   @override
-  Middleware get verifyJwt => throw UnimplementedError();
+  shelf.Middleware get verifyJwt => shelf.createMiddleware(
+        requestHandler: (shelf.Request req) {
+          if (req.context['jwt'] == null) {
+            return shelf.Response.forbidden('Not Authorized');
+          }
+          return null;
+        },
+      );
 }

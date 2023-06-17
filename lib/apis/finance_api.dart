@@ -1,10 +1,15 @@
+import 'package:nano_board/controllers/api.dart';
 import 'package:nano_board/controllers/instances.dart';
 import 'package:nano_board/models/transaction_model.dart';
 import 'package:shelf/shelf.dart';
 import 'package:shelf_router/shelf_router.dart';
 
-class FinanceApi {
-  Handler get handler {
+class FinanceApi extends Api {
+  @override
+  Handler getHandler({
+    List<Middleware>? middlewares,
+    bool isSecurity = false,
+  }) {
     final router = Router();
 
     // create finance
@@ -43,6 +48,7 @@ class FinanceApi {
       return Response.ok(userDAO.getUserFinances());
     });
 
-    return router;
+    return createHandler(
+        router: router, isSecurity: isSecurity, middlewares: middlewares);
   }
 }
