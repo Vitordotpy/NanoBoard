@@ -1,4 +1,4 @@
-import 'package:nano_board/controllers/instances.dart';
+import 'package:nano_board/instances/instances.dart';
 import 'package:shelf/shelf.dart';
 
 abstract class Api {
@@ -15,7 +15,7 @@ abstract class Api {
           [securityServiceImp.authorization, securityServiceImp.verifyJwt]);
     }
 
-    var pipeline = Pipeline();
+    var pipeline = const Pipeline();
 
     for (var element in middlewares) {
       pipeline = pipeline.addMiddleware(element);

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
-import 'package:nano_board/controllers/instances.dart';
+import 'package:nano_board/instances/instances.dart';
 import 'package:nano_board/views/styles/colors.dart';
 
 import 'topbarprofile.dart';

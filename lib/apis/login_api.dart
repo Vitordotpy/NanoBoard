@@ -1,6 +1,6 @@
 import 'package:nano_board/controllers/api.dart';
-import 'package:nano_board/controllers/instances.dart';
-import 'package:nano_board/controllers/userDAO.dart';
+import 'package:nano_board/instances/instances.dart';
+import 'package:nano_board/DAOs/userDAO.dart';
 import 'package:shelf/shelf.dart';
 import 'package:shelf_router/shelf_router.dart';
 

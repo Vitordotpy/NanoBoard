@@ -5,8 +5,8 @@ import 'package:get/get.dart';
 import 'package:nano_board/models/transaction_model.dart';
 import 'package:nano_board/views/styles/colors.dart';
 
-import '../../../controllers/constants/currencyslist.dart';
-import '../../../controllers/instances.dart';
+import '../../../constants/currencyslist.dart';
+import '../../../instances/instances.dart';
 import '../widgets/custom_text.dart';
 
 class FinanceItem extends StatelessWidget {

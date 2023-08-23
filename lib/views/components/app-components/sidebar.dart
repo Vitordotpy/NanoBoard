@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nano_board/controllers/constants/pageslist.dart';
+import 'package:nano_board/constants/pageslist.dart';
 import 'package:nano_board/views/components/app-components/sidebarItem.dart';
 import 'package:nano_board/views/styles/colors.dart';
 

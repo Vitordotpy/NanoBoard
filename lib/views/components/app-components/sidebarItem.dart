@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:nano_board/controllers/instances.dart';
+import 'package:nano_board/instances/instances.dart';
 import 'package:nano_board/views/styles/colors.dart';
 
 class SidebarItem extends StatelessWidget {

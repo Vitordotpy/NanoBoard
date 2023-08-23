@@ -1,12 +1,12 @@
 import 'package:currency_formatter/currency_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:nano_board/controllers/instances.dart';
+import 'package:nano_board/instances/instances.dart';
 import 'package:nano_board/views/styles/colors.dart';
 import 'package:nano_board/views/components/finances-components/add_transaction.dart';
 import 'package:nano_board/views/components/finances-components/finance_item.dart';
 
-import '../../controllers/constants/currencyslist.dart';
+import '../../constants/currencyslist.dart';
 import '../components/widgets/custom_text.dart';
 
 class Finances extends StatelessWidget {
