@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:nano_board/infrasctructure/database/postgres_db_config.dart';
 import 'package:shelf/shelf.dart';
 import 'package:window_size/window_size.dart';
 import 'package:nano_board/apis/finance_api.dart';
@@ -35,6 +36,7 @@ Future<void> main() async {
       email: RxString('email@email.com'),
       uid: RxString('uid'))); // provisório
   Get.put(SecurityServiceImp());
+  Get.put(PostgresDBConfig());
 
   // Handlers multiplos
   Handler cascade = Cascade()

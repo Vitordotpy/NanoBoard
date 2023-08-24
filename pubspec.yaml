@@ -22,6 +22,7 @@ dependencies:
   shelf:
   shelf_router:
   dart_jsonwebtoken:
+  postgres: ^2.6.2
 
 
 
