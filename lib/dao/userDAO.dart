@@ -1,9 +1,12 @@
 import 'dart:convert';
 import 'package:get/get.dart';
+import 'package:nano_board/dao/dao.dart';
+import 'package:nano_board/instances/instances.dart';
+import 'package:nano_board/models/user_model.dart';
 
 import '../models/transaction_model.dart';
 
-class UserDAO extends GetxController {
+class UserDAO extends GetxController implements DAO<UserModel> {
   static final UserDAO instance = Get.find();
 
   late final RxString name;
@@ -65,4 +68,36 @@ class UserDAO extends GetxController {
 
   factory UserDAO.fromJson(String source) =>
       UserDAO.fromMap(json.decode(source) as Map<String, dynamic>);
+
+  @override
+  Future create(UserModel value) async {
+    // TODO: implement create
+    throw UnimplementedError();
+  }
+
+  @override
+  Future delete(UserModel value) async {
+    // TODO: implement delete
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<UserModel> get(int id) async {
+    // TODO: implement get
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<UserModel>> getAll(int id) async {
+    final String SQL = 'SELECT * FROM user';
+    dbConnection.then((value) => value.open());
+    dbConnection.then((value) => value.query(SQL));
+    throw UnimplementedError();
+  }
+
+  @override
+  Future change(UserModel calue) async {
+    // TODO: implement change
+    throw UnimplementedError();
+  }
 }

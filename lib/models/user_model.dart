@@ -4,62 +4,40 @@ import 'dart:convert';
 import 'package:nano_board/models/transaction_model.dart';
 
 class UserModel {
-  late final String name;
-  late final String? password;
-  late final String uid;
-  late final String email;
-  late List<TransactionModel> userFinances = [];
-  late double balance = 0.0;
-  late int currency = 1;
+  final int id;
+  final String name;
+  final String lastName;
+  final String email;
+  final bool premium;
+  final bool isActive;
+  final String createdDate;
+  final String updatedDate;
 
-  UserModel({
-    required this.name,
-    this.password,
-    required this.uid,
-    required this.email,
-  });
+  UserModel(
+      {required this.id,
+      required this.name,
+      required this.lastName,
+      required this.email,
+      required this.premium,
+      required this.isActive,
+      required this.createdDate,
+      required this.updatedDate});
 
-  getCurrency() => currency;
-  getName() => name;
-  getUid() => uid;
-  getEmail() => email;
-  List<TransactionModel> getUserFinances() => userFinances;
-  getBalance() => balance;
-  getPassword() => password;
-
-  setPassword(password) => this.password = password;
-  setCurrency(currency) => this.currency = currency;
-  setName(name) => this.name = name;
-  setUid(uid) => this.uid = uid;
-  setEmail(email) => this.email = email;
-  setUserFinances(userFinances) => this.userFinances.add(userFinances);
-  setBalance(balance) => this.balance += balance;
-
-  //testando transaction*
-  addTransaction(TransactionModel transaction) {
-    userFinances.add(transaction);
-  }
-
-  Map<String, dynamic> toMap() {
-    return <String, dynamic>{
-      'name': name,
-      'password': password,
-      'uid': uid,
-      'email': email,
-    };
+  @override
+  String toString() {
+    return 'UserModel(id: $id, name: $name, lastName: $lastName, email: $email, premium: $premium, isActive: $isActive, createdDate: $createdDate, updatedDate: $updatedDate)';
   }
 
   factory UserModel.fromMap(Map<String, dynamic> map) {
     return UserModel(
+      createdDate: map['createdDate'] as String,
+      updatedDate: map['updatedDate'] as String,
+      id: map['id'] as int,
       name: map['name'] as String,
-      password: map['password'] != null ? map['password'] as String : null,
-      uid: map['uid'] as String,
+      lastName: map['lastName'] as String,
       email: map['email'] as String,
+      premium: map['premium'] as bool,
+      isActive: map['isActive'] as bool,
     );
   }
-
-  String toJson() => json.encode(toMap());
-
-  factory UserModel.fromJson(String source) =>
-      UserModel.fromMap(json.decode(source) as Map<String, dynamic>);
 }
